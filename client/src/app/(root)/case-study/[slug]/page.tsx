@@ -1,6 +1,8 @@
 "use client"
-import React, { use } from 'react'
-import { ArrowLeft, Calendar, Tag, ArrowRight } from 'lucide-react'
+import React, { use, useState, useEffect } from 'react'
+import { ArrowLeft, Calendar, Tag, ArrowRight, Clock, User } from 'lucide-react'
+import { getCaseStudyData, getDefaultCaseStudyData, type CaseStudyData } from '@/lib/case-studies'
+import MarkdownRenderer from '@/components/custom/markdown-renderer'
 
 interface PageProps {
   params: Promise<{
@@ -10,25 +12,44 @@ interface PageProps {
 
 const CaseStudyPage: React.FC<PageProps> = ({ params }) => {
   const { slug } = use(params)
-  
-  // Dynamic title based on slug - this can be enhanced to fetch from API
-  const getTitleFromSlug = (slug: string): string => {
-    const titleMap: Record<string, string> = {
-      'financial-crisis': 'The 2008 Financial Crisis: Anatomy of a Collapse',
-      'gamestop': 'GameStop Short Squeeze – Power of the Retail Investor',
-      'terra-luna': 'The Rise and Crash of Terra Luna and UST',
-      'bitcoin-halving': 'Bitcoin Halving Events and Price Movements',
-      'adani-hindenburg': 'India\'s Adani-Hindenburg Fallout Analysis',
-      'credit-suisse': 'Credit Suisse Contagion & UBS Takeover Study',
-      'evergrande': 'China\'s Evergrande Crisis - Real Estate Bubble Burst',
-      'bond-market': 'US Bond Market Inversion - Recession Predictor Analysis',
-      'ethereum-pos': 'Ethereum\'s Transition to Proof of Stake'
+  const [caseStudyData, setCaseStudyData] = useState<CaseStudyData | null>(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const loadCaseStudyData = async () => {
+      setLoading(true)
+      try {
+        const data = await getCaseStudyData(slug)
+        setCaseStudyData(data || getDefaultCaseStudyData(slug))
+      } catch (error) {
+        console.error('Error loading case study:', error)
+        setCaseStudyData(getDefaultCaseStudyData(slug))
+      } finally {
+        setLoading(false)
+      }
     }
-    
-    return titleMap[slug] || 'Case Study Analysis: Market Insights'
+
+    loadCaseStudyData()
+  }, [slug])
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-[#E2B33C]"></div>
+      </div>
+    )
   }
-  
-  const title = getTitleFromSlug(slug)
+
+  if (!caseStudyData) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">Case Study Not Found</h1>
+          <p className="text-gray-600">The requested case study could not be loaded.</p>
+        </div>
+      </div>
+    )
+  }
   // Function to render dynamic title with first two words white and rest gradient
   const renderDynamicTitle = (text: string) => {
     if (!text) return null
@@ -85,69 +106,68 @@ const CaseStudyPage: React.FC<PageProps> = ({ params }) => {
               </svg>
               <p className="text-[#E2B33C] text-lg font-medium font-['Inter']">Blog</p>
             </div>
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold font-['Montserrat'] leading-tight">
-              {renderDynamicTitle(title)}
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold font-['Montserrat'] leading-tight">
+              {renderDynamicTitle(caseStudyData.title)}
             </h1>
           </div>
         </div>
 
 
         {/* Main Article Content */}
-        <div className="bg-white py-16">
+        <div className="bg-white py-16 px-4">
           <div className="container-custom">
             <div className="max-w-4xl mx-auto">
               
               {/* Article Meta */}
-              <div className="flex items-center space-x-6 mb-8">
+              <div className="flex flex-wrap items-center gap-4 sm:gap-6 mb-8">
                 <div className="flex items-center">
-                  
                   <span className="bg-white text-gray-800 px-3 py-1 rounded-lg text-sm font-medium border border-amber-400">
-                    Finance
+                    {caseStudyData.category}
                   </span>
                 </div>
                 <div className="flex items-center">
                   <Calendar className="w-4 h-4 mr-2 text-gray-600" />
-                  <span className="text-gray-600 font-semibold text-sm">April 2, 2024</span>
+                  <span className="text-gray-600 font-semibold text-sm">{caseStudyData.date}</span>
                 </div>
               </div>
               
               {/* Hero Image */}
               <div className="mb-12">
                 <img
-                  src="/Link.png"
-                  alt="Financial trading environment during 2008 crisis"
-                  className="w-full object-cover shadow-lg"
+                  src={caseStudyData.heroImage}
+                  alt={caseStudyData.title}
+                  className="w-full object-cover shadow-lg rounded-lg"
                 />
               </div>
 
-              {/* Article Content */}
-              <div className="prose prose-lg max-w-none">
-                <p className="text-gray-700 text-lg leading-relaxed mb-8">
-                  The 2008 financial crisis stands as one of the most devastating economic events in modern history, 
-                  triggering a global recession that would become known as the Great Recession. This comprehensive 
-                  analysis explores the complex web of factors that led to the collapse of major financial institutions 
-                  and the subsequent economic turmoil that affected millions worldwide.
-                </p>
-                
-                <p className="text-gray-700 text-lg leading-relaxed mb-6">
-                Financial institutions repackaged these risky loans into complex derivatives like mortgage-backed securities (MBS) and collateralized debt obligations (CDOs). As housing prices fell, borrowers defaulted en masse, rendering these securities worthless. Major institutions like Lehman Brothers collapsed, triggering global panic. 
-                </p>
+              {/* Article Content - Dynamic Markdown */}
+              <MarkdownRenderer 
+                content={caseStudyData.content}
+                className="mb-12"
+              />
 
-                <p className="text-gray-700 text-lg leading-relaxed mb-6">
-                AIG required a $182 billion bailout due to its exposure via credit default swaps. Interbank lending froze, equity markets plummeted, and liquidity evaporated. Central banks worldwide slashed rates and introduced stimulus measures. The U.S. government enacted TARP to stabilize banks. 
-                </p>
-
-               
-                <p className="text-gray-700 text-lg leading-relaxed mb-6">
-                The crisis exposed flaws in risk management, oversight, and financial engineering. It led to the Dodd-Frank Act and Basel III regulations. The ripple effects persisted for years, with high unemployment and slow recovery. Trust in financial institutions eroded. Global trade shrank, and emerging markets were hit by capital outflows. 
-                </p>
-              </div>
+              {/* Tags */}
+              {caseStudyData.tags && caseStudyData.tags.length > 0 && (
+                <div className="mb-12">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Tags</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {caseStudyData.tags.map((tag, index) => (
+                      <span 
+                        key={index}
+                        className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-200 transition-colors duration-200"
+                      >
+                        #{tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
 
         {/* Related Blogs Section */}
-        <div className="bg-gray-50 py-16">
+        <div className="bg-gray-50 px-4 py-16">
           <div className="container-custom">
             <div className="max-w-4xl mx-auto">
               <div className="flex items-center justify-between mb-12">
@@ -160,43 +180,49 @@ const CaseStudyPage: React.FC<PageProps> = ({ params }) => {
                 </button>
               </div>
               
-              {/* Related Blog Cards Grid - 1:2 Layout */}
+                            {/* Related Blog Cards Grid - Dynamic 1:2 Layout */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-                {/* First Related Blog Card */}
-                <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group">
-                  {/* Image Container - Same aspect ratio as case study cards */}
-                  <div className="relative h-80 md:h-96 lg:h-[320px] bg-gray-100 overflow-hidden">
-                    <img
-                      src="/Blog Thumbnail Image.png"
-                      alt="GameStop Short Squeeze"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-                  {/* Content Container */}
-                  <div className="p-6">
-                    {/* Category and Date */}
-                    <div className="flex items-center gap-4 mb-4">
-                      <span className="bg-white text-gray-900 px-3 py-1 rounded-md text-sm font-medium border border-[#F2BE00] font-['Montserrat']">
-                        Retail
-                      </span>
-                      <span className="text-gray-500 text-sm font-semibold font-['Montserrat']">April 6, 2024</span>
+                {caseStudyData.relatedArticles.map((article, index) => (
+                  <div 
+                    key={index}
+                    className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group"
+                  >
+                    {/* Image Container - Same aspect ratio as case study cards */}
+                    <div className="relative h-80 md:h-96 lg:h-[320px] bg-gray-100 overflow-hidden">
+                      <img
+                        src={article.image}
+                        alt={article.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
                     </div>
-                    {/* Title - Same styling as case study cards */}
-                    <h3 className="text-gray-900 text-xl mb-4 line-clamp-2 min-h-[3.5rem] font-['Montserrat'] font-semibold">
-                      GameStop Short Squeeze – Power of the Retail Investor
-                    </h3>
-                    {/* Read Article Link - Matching case study card style */}
-                    <div className="flex items-center justify-between group/link cursor-pointer">
-                      <span className="text-gray-700 font-medium group-hover/link:text-blue-600 transition-colors duration-200 font-['Montserrat']">
-                        Read Article
-                      </span>
-                      <div className="w-8 h-8 bg-gray-900 rounded-full flex items-center justify-center group-hover/link:bg-blue-600 transition-all duration-200">
-                        <ArrowRight className="w-4 h-4 text-white" />
+                    {/* Content Container */}
+                    <div className="p-6">
+                      {/* Category and Date */}
+                      <div className="flex items-center gap-4 mb-4">
+                        <span className="bg-white text-gray-900 px-3 py-1 rounded-md text-sm font-medium border border-[#F2BE00] font-['Montserrat']">
+                          {article.category}
+                        </span>
+                        <span className="text-gray-500 text-sm font-semibold font-['Montserrat']">April 6, 2024</span>
+                      </div>
+                      {/* Title - Same styling as case study cards */}
+                      <h3 className="text-gray-900 text-xl mb-4 line-clamp-2 min-h-[3.5rem] font-['Montserrat'] font-semibold">
+                        {article.title}
+                      </h3>
+                      {/* Read Article Link - Matching case study card style */}
+                      <div 
+                        className="flex items-center justify-between group/link cursor-pointer"
+                        onClick={() => window.location.href = `/case-study/${article.slug}`}
+                      >
+                        <span className="text-gray-700 font-medium group-hover/link:text-blue-600 transition-colors duration-200 font-['Montserrat']">
+                          Read Article
+                        </span>
+                        <div className="w-8 h-8 bg-gray-900 rounded-full flex items-center justify-center group-hover/link:bg-blue-600 transition-all duration-200">
+                          <ArrowRight className="w-4 h-4 text-white" />
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-          
+                ))}
               </div>
             </div>
           </div>
