@@ -226,7 +226,8 @@ export function Header({ data }: Readonly<HeaderProps>) {
   return (
     <>
     {/* if "/" show header1 else show header2 */}
-    {pathname === "/" ? <Header1 logoText={logoText} logo={logo} navItems={navItems} cta={cta} /> : <Header2 logoText={logoText} logo={logo} navItems={navItems} cta={cta} />}
+    <Header1 logoText={logoText} logo={logo} navItems={navItems} cta={cta} />
+    {/* {pathname === "/" ? <Header1 logoText={logoText} logo={logo} navItems={navItems} cta={cta} /> : <Header2 logoText={logoText} logo={logo} navItems={navItems} cta={cta} />} */}
     </>
   );
 }

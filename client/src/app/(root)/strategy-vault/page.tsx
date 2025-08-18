@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 
 const StrategyVault: React.FC = () => {
 
@@ -10,44 +11,44 @@ const StrategyVault: React.FC = () => {
                 {/* Top Banner with Section.png background - Responsive */}
                 <div
                     className="relative w-full min-h-[300px] sm:min-h-[350px] md:min-h-[400px] lg:min-h-[450px] flex items-center justify-center overflow-hidden"
-                    style={{
-                        backgroundImage: "url('/Section.png')",
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        backgroundRepeat: 'no-repeat'
-                    }}
+                    style={{ background: 'linear-gradient(180deg, #397BA7 4%, #7EBFDB 100%)' }}
                 >
                     {/* Fallback img element */}
-                    <img
-                        src="/Section.png"
-                        alt="Strategy Vault Background"
-                        className="absolute top-0 left-0 w-full h-full object-cover z-0 opacity-0"
-                        style={{ minHeight: '100%' }}
-                    />
+                    <div className="absolute inset-0 z-0 -top-100">
+                        <Image
+                            src="/hero_bg.png"
+                            alt="Background lines"
+                            fill
+                            className="object-cover opacity-100"
+                            priority
+                        />
+                    </div>
 
                     {/* Overlay to ensure text readability */}
                     <div className="absolute inset-0 bg-opacity-20 z-10"></div>
 
                     {/* Content positioned above the background image - Responsive */}
                     <div className="relative z-20 text-center text-white px-4 sm:px-6 lg:px-8">
-                        <div className="flex items-center justify-center mb-3 sm:mb-4 gap-2">
-                            <svg className="w-5 h-5 sm:w-6 sm:h-6 text-[#E7C814]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                            </svg>
-                            <p className="text-[#E7C814] text-lg sm:text-xl font-medium font-['Inter']">Vault</p>
+                        <div className="flex items-center justify-center mb-3 sm:mb-4">
+                            <div className="bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 flex items-center gap-2 shadow-lg border border-white/30">
+                                <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                                </svg>
+                                <p className="text-white text-md font-medium font-['Outfit']">Vault</p>
+                            </div>
                         </div>
                         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold font-['Montserrat']">
-                            <span className="text-white">Strategy</span>{' '}
-                            <span className="bg-gradient-to-r from-yellow-400 to-green-500 bg-clip-text text-transparent">Vault</span>
+                            <span className="text-white font-heading">Strategy</span>{' '}
+                            <span className="text-white font-heading">Vault</span>
                         </h1>
                     </div>
                 </div>
 
                 {/* Overview Section - Responsive */}
-                <div className="bg-white">
+                <div className="bg-[#f5fcff]">
                     <div className="container mx-auto py-8 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-8">
                         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 md:mb-20 lg:mb-24">
-                            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold font-['Montserrat'] mb-3 sm:mb-4" style={{ background: 'linear-gradient(90deg, #E7C814 50.96%, #12C296 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Overview</h2>
+                            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold font-['Montserrat'] mb-3 sm:mb-4 text-black">Overview</h2>
                             <p className="text-gray-700 text-sm sm:text-base lg:text-lg mb-6 sm:mb-8 px-4 sm:px-0 font-['Montserrat']">
                                 The Strategy Vault is a curated library of internal research frameworks, thematic models, and tactical deployment playbooks. These are NOT investment products or advisory notes.
                             </p>
@@ -104,19 +105,19 @@ const StrategyVault: React.FC = () => {
                 </div>
 
                 {/* Strategy Categories Section - Responsive */}
-                <div className="bg-gray-50 py-8 sm:py-12 md:py-16">
+                <div className="py-8 sm:py-12 md:py-16 font-semibold font-['Montserrat'] bg-[#f5fcff]"  style={{ background: 'linear-gradient(180deg, #f5fcff 4%, #fafafa 100%)' }}>
                     <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
                         <div className="text-center mb-8 sm:mb-10 md:mb-12">
-                            <div className="flex items-center justify-center">
-                                <div className="flex items-center justify-center  gap-2">
-                                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-[#E7C814]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <div className="pb-4 flex items-center justify-center">
+                                <div className=" backdrop-blur-sm rounded-full px-4 py-2 flex items-center gap-2 shadow-lg border border-[#397BA7]">
+                                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-[#000000]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                                     </svg>
-                                    <p className="text-[#E7C814] text-sm sm:text-xl font-medium font-['Inter']">Categories</p>
+                                    <p className="text-black text-sm  font-medium font-['Inter']">Categories</p>
                                 </div>
                             </div>
                             <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-black font-['Montserrat']">
-                                Strategy <span className="bg-gradient-to-r from-[#E7C814] to-[#12C296] bg-clip-text text-transparent">Categories</span>
+                                Strategy <span className="text-[#397BA7]">Categories</span>
                             </h3>
                         </div>
 
@@ -127,7 +128,7 @@ const StrategyVault: React.FC = () => {
                                 {/* Left Column - 2 Cards - Vertically Centered */}
                                 <div className="w-full lg:flex-1 flex flex-col gap-4 sm:gap-6 lg:justify-center">
                                     {/* Card 1 - Crypto & Blockchain */}
-                                    <div className="bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                                    <div className="bg-[#f5fcff] rounded-xl sm:rounded-2xl overflow-hidden border border-[#397BA7] hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
                                         <div className="h-48 sm:h-56 md:h-64 lg:h-72 xl:h-80 2xl:h-96 relative overflow-hidden">
                                             <img
                                                 src="/Background.png"
@@ -142,7 +143,7 @@ const StrategyVault: React.FC = () => {
                                     </div>
 
                                     {/* Card 3 - Private Equity & VC */}
-                                    <div className="bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                                    <div className="bg-[#f5fcff] rounded-xl sm:rounded-2xl overflow-hidden border border-[#397BA7] hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
                                         <div className="h-48 sm:h-56 md:h-64 lg:h-72 xl:h-80 2xl:h-96 relative overflow-hidden">
                                             <img
                                                 src="/Background (2).png"
@@ -160,7 +161,7 @@ const StrategyVault: React.FC = () => {
                                 {/* Middle Column - 3 Cards */}
                                 <div className="w-full lg:flex-1 flex flex-col gap-4 sm:gap-6">
                                     {/* Card 2 - Equity Markets */}
-                                    <div className="bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                                    <div className="bg-[#f5fcff] rounded-xl sm:rounded-2xl overflow-hidden border border-[#397BA7] hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
                                         <div className="h-44 sm:h-52 md:h-56 lg:h-64 xl:h-72 2xl:h-80 relative overflow-hidden">
                                             <img
                                                 src="/Background (1).png"
@@ -175,7 +176,7 @@ const StrategyVault: React.FC = () => {
                                     </div>
 
                                     {/* Card 4 - Impact Investing */}
-                                    <div className="bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                                    <div className="bg-[#f5fcff] rounded-xl sm:rounded-2xl overflow-hidden border border-[#397BA7] hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
                                         <div className="h-44 sm:h-52 md:h-56 lg:h-64 xl:h-72 2xl:h-80 relative overflow-hidden">
                                             <img
                                                 src="/Background (3).png"
@@ -190,7 +191,7 @@ const StrategyVault: React.FC = () => {
                                     </div>
 
                                     {/* Card 5 - Startup Scaling */}
-                                    <div className="bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                                    <div className="bg-[#f5fcff] rounded-xl sm:rounded-2xl overflow-hidden border border-[#397BA7] hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
                                         <div className="h-44 sm:h-52 md:h-56 lg:h-64 xl:h-72 2xl:h-80 relative overflow-hidden">
                                             <img
                                                 src="/Background (5).png"
@@ -208,7 +209,7 @@ const StrategyVault: React.FC = () => {
                                 {/* Right Column - 2 Cards - Vertically Centered */}
                                 <div className="w-full lg:flex-1 flex flex-col gap-4 sm:gap-6 lg:justify-center">
                                     {/* Card 6 - Real Estate & REITs */}
-                                    <div className="bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                                    <div className="bg-[#f5fcff] rounded-xl sm:rounded-2xl overflow-hidden border border-[#397BA7] hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
                                         <div className="h-48 sm:h-56 md:h-64 lg:h-72 xl:h-80 2xl:h-96 relative overflow-hidden">
                                             <img
                                                 src="/Background (4).png"
@@ -223,7 +224,7 @@ const StrategyVault: React.FC = () => {
                                     </div>
 
                                     {/* Card 7 - M&A */}
-                                    <div className="bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                                    <div className="bg-[#f5fcff] rounded-xl sm:rounded-2xl overflow-hidden border border-[#397BA7] hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
                                         <div className="h-48 sm:h-56 md:h-64 lg:h-72 xl:h-80 2xl:h-96 relative overflow-hidden">
                                             <img
                                                 src="/Background (5).png"

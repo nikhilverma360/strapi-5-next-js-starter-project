@@ -107,15 +107,15 @@ const Footer2= ({text, socialLinks}: {text: string, socialLinks: Link[]}) => (
           
           <div className="space-y-2 sm:space-y-3">
             <div className="flex items-start space-x-3 text-gray-700">
-              <MapPin className="w-4 h-4 text-[#E2B33C] mt-0.5 flex-shrink-0" />
+              <MapPin className="w-4 h-4 text-[#397BA7] mt-0.5 flex-shrink-0" />
               <span className="text-sm">1234 Finance Plaza, Suite 500<br />New York, NY 10001</span>
             </div>
             <div className="flex items-center space-x-3 text-gray-700">
-              <Mail className="w-4 h-4 text-[#E2B33C] flex-shrink-0" />
+              <Mail className="w-4 h-4 text-[#397BA7] flex-shrink-0" />
               <span className="text-sm">contact@bangerfinlab.com</span>
             </div>
             <div className="flex items-center space-x-3 text-gray-700">
-              <Phone className="w-4 h-4 text-[#E2B33C] flex-shrink-0" />
+              <Phone className="w-4 h-4 text-[#397BA7] flex-shrink-0" />
               <span className="text-sm">+1 (555) 123-4567</span>
             </div>
           </div>
@@ -123,7 +123,7 @@ const Footer2= ({text, socialLinks}: {text: string, socialLinks: Link[]}) => (
 
         {/* About Links */}
         <div className="sm:col-span-1 lg:mt-20 lg:col-span-1">
-          <h4 className="font-bold text-base sm:text-lg mb-3 sm:mb-4 text-[#E2B33C]">About</h4>
+          <h4 className="font-bold text-base sm:text-lg mb-3 sm:mb-4 text-[#397BA7]">About</h4>
           <ul className="space-y-2">
             <li><a href="#" className="text-gray-700 hover:text-amber-500 transition-colors duration-200 text-sm">About Banger Finlab</a></li>
             <li><a href="#" className="text-gray-700 hover:text-amber-500 transition-colors duration-200 text-sm">Core Values</a></li>
@@ -134,7 +134,7 @@ const Footer2= ({text, socialLinks}: {text: string, socialLinks: Link[]}) => (
 
         {/* Services Links */}
         <div className="sm:col-span-1  lg:mt-20 lg:col-span-1">
-          <h4 className="font-bold text-base sm:text-lg mb-3 sm:mb-4 text-[#E2B33C]">Services</h4>
+          <h4 className="font-bold text-base sm:text-lg mb-3 sm:mb-4 text-[#397BA7]">Services</h4>
           <ul className="space-y-2">
             <li><a href="#" className="text-gray-700 hover:text-amber-500 transition-colors duration-200 text-sm">Financial Advisory</a></li>
             <li><a href="#" className="text-gray-700 hover:text-amber-500 transition-colors duration-200 text-sm">Strategy Drafting</a></li>
@@ -145,7 +145,7 @@ const Footer2= ({text, socialLinks}: {text: string, socialLinks: Link[]}) => (
 
         {/* Resources Links */}
         <div className="sm:col-span-1  lg:mt-20 lg:col-span-1">
-          <h4 className="font-bold text-base sm:text-lg mb-3 sm:mb-4 text-[#E2B33C]">Resources</h4>
+          <h4 className="font-bold text-base sm:text-lg mb-3 sm:mb-4 text-[#397BA7]">Resources</h4>
           <ul className="space-y-2">
             <li><a href="#" className="text-gray-700 hover:text-amber-500 transition-colors duration-200 text-sm">Banger Capsules</a></li>
             <li><a href="#" className="text-gray-700 hover:text-amber-500 transition-colors duration-200 text-sm">Case Studies</a></li>
@@ -156,7 +156,7 @@ const Footer2= ({text, socialLinks}: {text: string, socialLinks: Link[]}) => (
 
         {/* Newsletter Subscription */}
         <div className="sm:col-span-2  lg:mt-20 lg:col-span-1">
-          <h4 className="font-bold text-base sm:text-lg mb-3 sm:mb-4 text-[#E2B33C]">Newsletter</h4>
+          <h4 className="font-bold text-base sm:text-lg mb-3 sm:mb-4 text-[#397BA7]">Newsletter</h4>
           <p className="text-gray-700 mb-4 text-sm">
             Subscribe to our newsletter for the latest financial insights and strategies.
           </p>
