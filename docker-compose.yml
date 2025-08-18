@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   strapi:
     build: .
@@ -9,11 +7,11 @@ services:
       - NODE_ENV=production
       - DATABASE_CLIENT=sqlite
       - DATABASE_FILENAME=.tmp/data.db
-      - JWT_SECRET=your-jwt-secret-here
-      - ADMIN_JWT_SECRET=your-admin-jwt-secret-here
-      - APP_KEYS=key1,key2,key3,key4
-      - API_TOKEN_SALT=your-api-token-salt-here
-      - TRANSFER_TOKEN_SALT=your-transfer-token-salt-here
+      - JWT_SECRET=your-jwt-secret-change-this-in-production
+      - ADMIN_JWT_SECRET=your-admin-jwt-secret-change-this-in-production
+      - APP_KEYS=key1-change-this,key2-change-this,key3-change-this,key4-change-this
+      - API_TOKEN_SALT=your-api-token-salt-change-this-in-production
+      - TRANSFER_TOKEN_SALT=your-transfer-token-salt-change-this-in-production
     volumes:
       - strapi_data:/app/server/.tmp
       - strapi_uploads:/app/server/public/uploads
@@ -22,22 +20,11 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
-      start_period: 40s
-
-  nextjs:
-    build:
-      context: .
-      target: client-build
-    ports:
-      - "3000:3000"
-    environment:
-      - NODE_ENV=production
-      - NEXT_PUBLIC_STRAPI_URL=http://strapi:1337
-    depends_on:
-      strapi:
-        condition: service_healthy
-    command: ["sh", "-c", "cd client && yarn start"]
+      start_period: 60s
+    restart: unless-stopped
 
 volumes:
   strapi_data:
+    driver: local
   strapi_uploads:
+    driver: local

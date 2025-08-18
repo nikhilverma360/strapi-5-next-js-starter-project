@@ -1,79 +1,53 @@
-# Multi-stage build for better optimization
-FROM node:18-alpine AS base
+# Use a more stable Node.js base image
+FROM node:18-bullseye-slim
 
 # Install system dependencies required for native modules
-RUN apk add --no-cache \
+RUN apt-get update && apt-get install -y \
     python3 \
     make \
     g++ \
-    libc6-compat \
-    vips-dev \
-    sqlite
+    build-essential \
+    libvips-dev \
+    sqlite3 \
+    wget \
+    && rm -rf /var/lib/apt/lists/*
 
-# Set working directory
+# Create app directory
 WORKDIR /app
 
-# Copy package files for dependency installation
-COPY package*.json yarn.lock ./
+# Create app user for security
+RUN groupadd --gid 1001 nodejs \
+    && useradd --uid 1001 --gid nodejs --shell /bin/bash --create-home strapi
 
-# Server dependencies stage
-FROM base AS server-deps
+# Copy and install server dependencies
 WORKDIR /app/server
 COPY server/package*.json server/yarn.lock ./
 RUN yarn install --frozen-lockfile --network-timeout 600000
 
-# Client dependencies stage  
-FROM base AS client-deps
+# Copy server source and build
+COPY server/ .
+RUN yarn build
+
+# Copy and install client dependencies
 WORKDIR /app/client
 COPY client/package*.json client/yarn.lock ./
 RUN yarn install --frozen-lockfile --network-timeout 600000
 
-# Server build stage
-FROM base AS server-build
-WORKDIR /app/server
-COPY --from=server-deps /app/server/node_modules ./node_modules
-COPY server/ .
-RUN yarn build
-
-# Client build stage
-FROM base AS client-build
-WORKDIR /app/client
-COPY --from=client-deps /app/client/node_modules ./node_modules
+# Copy client source and build
 COPY client/ .
 RUN yarn build
 
-# Production image
-FROM node:18-alpine AS production
-
-# Install runtime dependencies
-RUN apk add --no-cache \
-    vips \
-    sqlite
-
-# Create app user
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 strapi
-
+# Set working directory back to app root
 WORKDIR /app
 
-# Copy built server application
-COPY --from=server-build --chown=strapi:nodejs /app/server/dist ./server/dist
-COPY --from=server-build --chown=strapi:nodejs /app/server/node_modules ./server/node_modules
-COPY --from=server-build --chown=strapi:nodejs /app/server/package*.json ./server/
-COPY --from=server-build --chown=strapi:nodejs /app/server/public ./server/public
-COPY --from=server-build --chown=strapi:nodejs /app/server/config ./server/config
-
-# Copy built client application
-COPY --from=client-build --chown=strapi:nodejs /app/client/.next ./client/.next
-COPY --from=client-build --chown=strapi:nodejs /app/client/node_modules ./client/node_modules
-COPY --from=client-build --chown=strapi:nodejs /app/client/package*.json ./client/
-COPY --from=client-build --chown=strapi:nodejs /app/client/public ./client/public
-
 # Copy other necessary files
-COPY --chown=strapi:nodejs copy-env.mts ./
+COPY copy-env.mts ./
 
 # Create data directory for SQLite database
 RUN mkdir -p /app/server/.tmp && chown -R strapi:nodejs /app/server/.tmp
+
+# Change ownership of all app files
+RUN chown -R strapi:nodejs /app
 
 # Switch to non-root user
 USER strapi
