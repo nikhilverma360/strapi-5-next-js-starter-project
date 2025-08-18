@@ -270,7 +270,7 @@ const CaseStudyPage: React.FC = () => {
                       }`}
                     >
                       {category.label}
-                    </button>
+                  </button>
                   ))}
                 </div>
               </div>
