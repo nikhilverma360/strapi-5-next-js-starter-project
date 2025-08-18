@@ -107,7 +107,7 @@ const CaseStudyPage: React.FC<PageProps> = ({ params }) => {
                 </div>
                 <div className="flex items-center">
                   <Calendar className="w-4 h-4 mr-2 text-gray-600" />
-                  <span className="text-gray-600 text-sm">April 2, 2024</span>
+                  <span className="text-gray-600 font-semibold text-sm">April 2, 2024</span>
                 </div>
               </div>
               
@@ -116,7 +116,7 @@ const CaseStudyPage: React.FC<PageProps> = ({ params }) => {
                 <img
                   src="/Link.png"
                   alt="Financial trading environment during 2008 crisis"
-                  className="w-full rounded-xl object-cover shadow-lg"
+                  className="w-full object-cover shadow-lg"
                 />
               </div>
 
@@ -152,7 +152,10 @@ const CaseStudyPage: React.FC<PageProps> = ({ params }) => {
             <div className="max-w-4xl mx-auto">
               <div className="flex items-center justify-between mb-12">
                 <h2 className="text-3xl font-bold text-gray-800">Related Blogs</h2>
-                <button className="bg-amber-500 text-white px-6 py-3 rounded-lg font-medium hover:bg-amber-600 transition-colors duration-200">
+                <button 
+                  onClick={() => window.location.href = '/case-study'}
+                  className="bg-[#E2B33C] text-white px-6 py-3 rounded-lg font-medium hover:bg-amber-500 transition-colors duration-200"
+                >
                   All Blogs
                 </button>
               </div>
