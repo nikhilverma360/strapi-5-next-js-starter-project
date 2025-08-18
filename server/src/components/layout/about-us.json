@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_layout_about_uses",
+  "info": {
+    "displayName": "About Us"
+  },
+  "options": {},
+  "attributes": {
+    "description": {
+      "type": "text"
+    },
+    "images": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "buttonLink": {
+      "type": "string"
+    }
+  }
+}

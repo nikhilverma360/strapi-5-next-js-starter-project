@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_blocks_about_uses",
+  "info": {
+    "displayName": "about us",
+    "icon": "briefcase"
+  },
+  "options": {},
+  "attributes": {
+    "aboutUs": {
+      "type": "text"
+    },
+    "images": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}

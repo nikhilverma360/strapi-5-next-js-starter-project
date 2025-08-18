@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_blocks_aboutuses",
+  "info": {
+    "displayName": "aboutus",
+    "icon": "collapse"
+  },
+  "options": {},
+  "attributes": {
+    "aboutUs": {
+      "type": "text"
+    },
+    "images": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "link": {
+      "type": "string"
+    },
+    "buttonText": {
+      "type": "string"
+    }
+  }
+}
