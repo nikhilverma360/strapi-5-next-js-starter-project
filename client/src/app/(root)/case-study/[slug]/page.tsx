@@ -160,36 +160,43 @@ const CaseStudyPage: React.FC<PageProps> = ({ params }) => {
                 </button>
               </div>
               
-              {/* Related Blog Card */}
-              <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-200">
-                <div className="md:flex">
-                  <div className="md:w-1/3">
+              {/* Related Blog Cards Grid - 1:2 Layout */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                {/* First Related Blog Card */}
+                <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group">
+                  {/* Image Container - Same aspect ratio as case study cards */}
+                  <div className="relative h-80 md:h-96 lg:h-[320px] bg-gray-100 overflow-hidden">
                     <img
-                    src="/Blog Thumbnail Image.png"
+                      src="/Blog Thumbnail Image.png"
                       alt="GameStop Short Squeeze"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>
-                  <div className="md:w-2/3 p-6">
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="bg-white text-gray-800 px-3 py-1 rounded-lg text-sm font-medium border border-amber-400">
+                  {/* Content Container */}
+                  <div className="p-6">
+                    {/* Category and Date */}
+                    <div className="flex items-center gap-4 mb-4">
+                      <span className="bg-white text-gray-900 px-3 py-1 rounded-md text-sm font-medium border border-[#F2BE00] font-['Montserrat']">
                         Retail
                       </span>
-                      <span className="text-gray-500 text-sm">April 6, 2024</span>
+                      <span className="text-gray-500 text-sm font-semibold font-['Montserrat']">April 6, 2024</span>
                     </div>
-                    <h3 className="font-bold text-gray-800 mb-4 text-xl">
+                    {/* Title - Same styling as case study cards */}
+                    <h3 className="text-gray-900 text-xl mb-4 line-clamp-2 min-h-[3.5rem] font-['Montserrat'] font-semibold">
                       GameStop Short Squeeze – Power of the Retail Investor
                     </h3>
-                    <div className="flex items-center space-x-3 group cursor-pointer">
-                      <span className="text-gray-800 font-medium group-hover:text-blue-600 transition-colors duration-200">
+                    {/* Read Article Link - Matching case study card style */}
+                    <div className="flex items-center justify-between group/link cursor-pointer">
+                      <span className="text-gray-700 font-medium group-hover/link:text-blue-600 transition-colors duration-200 font-['Montserrat']">
                         Read Article
                       </span>
-                      <div className="w-6 h-6 bg-gray-800 rounded-full flex items-center justify-center group-hover:bg-blue-600 transition-colors duration-200">
-                        <ArrowRight className="w-3 h-3 text-white" />
+                      <div className="w-8 h-8 bg-gray-900 rounded-full flex items-center justify-center group-hover/link:bg-blue-600 transition-all duration-200">
+                        <ArrowRight className="w-4 h-4 text-white" />
                       </div>
                     </div>
                   </div>
                 </div>
+          
               </div>
             </div>
           </div>
