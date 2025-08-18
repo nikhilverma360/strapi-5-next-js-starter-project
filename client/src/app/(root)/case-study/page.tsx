@@ -18,7 +18,7 @@ const CaseStudyPage: React.FC = () => {
   const router = useRouter()
 
   const handleReadArticle = () => {
-    router.push('/financial-crisis')
+    router.push('/case-study/financial-crisis')
   }
 
   // Filter categories
@@ -48,6 +48,7 @@ const CaseStudyPage: React.FC = () => {
       category: 'Finance',
       date: 'April 6, 2024',
       title: 'The Rise and Crash of Terra Luna and UST',
+      slug: '/terra-luna',
       fontWeight: 'semibold'
     },
     {
@@ -57,6 +58,7 @@ const CaseStudyPage: React.FC = () => {
       category: 'Finance',
       date: 'April 6, 2024',
       title: "India's Sovereign Gold Bond Scheme",
+      slug: '/india-sovereign-gold-bond-scheme',
       fontWeight: 'semibold'
     },
     {
@@ -66,6 +68,7 @@ const CaseStudyPage: React.FC = () => {
       category: 'Finance',
       date: 'April 6, 2024',
       title: 'Credit Suisse Contagion & UBS Takeover (2023)',
+      slug: '/credit-suisse',
       fontWeight: 'semibold'
     },
     {
@@ -75,6 +78,7 @@ const CaseStudyPage: React.FC = () => {
       category: 'Crypto',
       date: 'April 6, 2024',
       title: 'Bitcoin Halving Events and Price Movements',
+      slug: '/bitcoin-halving',
       fontWeight: 'semibold'
     },
     {
@@ -84,6 +88,7 @@ const CaseStudyPage: React.FC = () => {
       category: 'Market',
       date: 'April 6, 2024',
       title: "India's Adani-Hindenburg Fallout (2023)",
+      slug: '/india-adani-hindenburg-fallout',
       fontWeight: 'bold'
     },
     {
@@ -93,6 +98,7 @@ const CaseStudyPage: React.FC = () => {
       category: 'Finance',
       date: 'April 6, 2024',
       title: "China's Evergrande Crisis - Real Estate Bubble Burst",
+      slug: '/china-evergrande-crisis',
       fontWeight: 'bold'
     },
     {
@@ -102,6 +108,7 @@ const CaseStudyPage: React.FC = () => {
       category: 'Market',
       date: 'April 6, 2024',
       title: 'US Bond Market Inversion - Recession Predictor?',
+      slug: '/us-bond-market-inversion',
       fontWeight: 'bold'
     },
     {
@@ -111,6 +118,7 @@ const CaseStudyPage: React.FC = () => {
       category: 'Crypto',
       date: 'April 6, 2024',
       title: "Ethereum's Transition to Proof of Stake",
+      slug: '/ethereum-pos',
       fontWeight: 'bold'
     }
   ]
@@ -147,7 +155,7 @@ const CaseStudyPage: React.FC = () => {
           </h3>
           <div 
             className="flex items-center justify-between group/link cursor-pointer"
-            onClick={() => card.slug && router.push(card.slug)}
+            onClick={() => card.slug && router.push(`/case-study/${card.slug}`)}
           >
             <span className="text-gray-700 font-medium group-hover/link:text-blue-600 transition-colors duration-200 font-['Montserrat']">
               Read Article
