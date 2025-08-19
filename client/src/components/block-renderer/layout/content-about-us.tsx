@@ -12,7 +12,7 @@ export function ContentAboutUs(data: any) {
   const { reverse, image, heading, subHeading, text } = data;
 
   return (
-    <section className="dark:text-white py-24">
+    <section id="about" className="dark:text-white py-24">
       {/* Stage ensures exact spacing for the floating cards */}
       <div className="relative mx-auto max-w-[1200px] px-6 sm:px-8 py-20 sm:py-24 lg:py-28 min-h-[640px] md:min-h-[680px] lg:min-h-[720px]">
         {/* ===== Floating image ring ===== */}

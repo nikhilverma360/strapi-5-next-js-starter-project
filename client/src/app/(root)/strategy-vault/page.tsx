@@ -30,7 +30,7 @@ const StrategyVault: React.FC = () => {
                     {/* Content positioned above the background image - Responsive */}
                     <div className="relative z-20 text-center text-white px-4 sm:px-6 lg:px-8">
                         <div className="flex items-center justify-center mb-3 sm:mb-4">
-                            <div className="bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 flex items-center gap-2 shadow-lg border border-white/30">
+                            <div className="hidden sm:flex bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 items-center gap-2 shadow-lg border border-white/30">
                                 <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                                 </svg>
@@ -53,7 +53,7 @@ const StrategyVault: React.FC = () => {
                                 The Strategy Vault is a curated library of internal research frameworks, thematic models, and tactical deployment playbooks. These are NOT investment products or advisory notes.
                             </p>
                             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
-                                <button className="w-full sm:w-auto px-4 sm:px-6 py-2.5 sm:py-3 rounded-md bg-[#E2B33C] text-white font-semibold shadow-sm hover:brightness-105">
+                                <button className="w-full sm:w-auto px-4 sm:px-6 py-2.5 sm:py-3 rounded-md bg-gray-800 text-white font-semibold shadow-sm hover:brightness-105">
                                     Get Started
                                 </button>
                                 <button className="w-full sm:w-auto px-4 sm:px-6 py-2.5 sm:py-3 rounded-md font-semibold border-2 border-gray-300 text-gray-800 hover:bg-gray-50">

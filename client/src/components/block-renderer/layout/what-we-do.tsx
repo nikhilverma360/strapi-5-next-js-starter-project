@@ -30,7 +30,7 @@ export const WhatWeDoSection = (data: any) => {
   ];
 
   return (
-    <section className="w-full px-5 sm:px-6 md:px-8 lg:px-12 py-16 sm:py-20 lg:py-24">
+    <section id="what-we-do" className="w-full px-5 sm:px-6 md:px-8 lg:px-12 py-16 sm:py-20 lg:py-24">
       {/* HEADER — responsive  */}
       <div className="mx-auto w-full max-w-[1120px]">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-10 gap-y-6 items-start">

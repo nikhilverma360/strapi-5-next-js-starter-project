@@ -3,6 +3,7 @@ import React, { use, useState, useEffect } from 'react'
 import { ArrowLeft, Calendar, Tag, ArrowRight, Clock, User } from 'lucide-react'
 import { getCaseStudyData, getDefaultCaseStudyData, type CaseStudyData } from '@/lib/case-studies'
 import MarkdownRenderer from '@/components/custom/markdown-renderer'
+import Image from 'next/image'
 
 interface PageProps {
   params: Promise<{
@@ -35,7 +36,7 @@ const CaseStudyPage: React.FC<PageProps> = ({ params }) => {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-[#E2B33C]"></div>
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-[#397BA7]"></div>
       </div>
     )
   }
@@ -80,26 +81,37 @@ const CaseStudyPage: React.FC<PageProps> = ({ params }) => {
         {/* Hero Section with Section.png background */}
         <div
           className="relative w-full min-h-[300px] sm:min-h-[350px] md:min-h-[400px] lg:min-h-[450px] flex items-center justify-center overflow-hidden"
-          style={{
-            backgroundImage: "url('/Section.png')",
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat'
-          }}
+          style={{ background: 'linear-gradient(180deg, #397BA7 4%, #7EBFDB 100%)' }}
         >
           {/* Fallback img element */}
-          <img
-            src="/Section.png"
-            alt="Case Study Background"
-            className="absolute top-0 left-0 w-full h-full object-cover z-0 opacity-0"
-            style={{ minHeight: '100%' }}
-          />
+          <div className="absolute inset-0 z-0 -top-100">
+            <Image
+              src="/hero_bg.png"
+              alt="Background lines"
+              fill
+              className="object-cover opacity-100"
+              priority
+            />
+          </div>
 
           {/* Overlay to ensure text readability */}
           <div className="absolute inset-0 bg-opacity-20 z-10"></div>
 
+          <div className="relative z-20 text-center text-white pt-10 px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center justify-center mb-3 sm:mb-4">
+              <div className="hidden sm:flex bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 items-center gap-2 shadow-lg border border-white/30">
+                <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                </svg>
+                <p className="text-white text-md font-medium font-['Outfit']">Blog</p>
+              </div>
+            </div>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold font-['Montserrat'] leading-tight">
+              {caseStudyData.title}
+            </h1>
+          </div>
           {/* Content positioned above the background image - Responsive padding and typography */}
-          <div className="relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+          {/* <div className="relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
             <div className="flex items-center justify-center mb-3 sm:mb-4 gap-2">
               <svg className="w-5 h-5 sm:w-6 sm:h-6 text-[#E2B33C]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
@@ -109,7 +121,7 @@ const CaseStudyPage: React.FC<PageProps> = ({ params }) => {
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold font-['Montserrat'] leading-tight">
               {renderDynamicTitle(caseStudyData.title)}
             </h1>
-          </div>
+          </div> */}
         </div>
 
 
@@ -121,7 +133,7 @@ const CaseStudyPage: React.FC<PageProps> = ({ params }) => {
               {/* Article Meta */}
               <div className="flex flex-wrap items-center gap-4 sm:gap-6 mb-8">
                 <div className="flex items-center">
-                  <span className="bg-white text-gray-800 px-3 py-1 rounded-lg text-sm font-medium border border-amber-400">
+                  <span className="bg-white text-gray-800 px-3 py-1 rounded-lg text-sm font-medium border border-[#397BA7]">
                     {caseStudyData.category}
                   </span>
                 </div>
@@ -174,7 +186,7 @@ const CaseStudyPage: React.FC<PageProps> = ({ params }) => {
                 <h2 className="text-3xl font-bold text-gray-800">Related Blogs</h2>
                 <button 
                   onClick={() => window.location.href = '/case-study'}
-                  className="bg-[#E2B33C] text-white px-6 py-3 rounded-lg font-medium hover:bg-amber-500 transition-colors duration-200"
+                  className="bg-[#397BA7] text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-500 transition-colors duration-200"
                 >
                   All Blogs
                 </button>
@@ -199,7 +211,7 @@ const CaseStudyPage: React.FC<PageProps> = ({ params }) => {
                     <div className="p-6">
                       {/* Category and Date */}
                       <div className="flex items-center gap-4 mb-4">
-                        <span className="bg-white text-gray-900 px-3 py-1 rounded-md text-sm font-medium border border-[#F2BE00] font-['Montserrat']">
+                        <span className="bg-white text-gray-900 px-3 py-1 rounded-md text-sm font-medium border border-[#397BA7] font-['Montserrat']">
                           {article.category}
                         </span>
                         <span className="text-gray-500 text-sm font-semibold font-['Montserrat']">April 6, 2024</span>

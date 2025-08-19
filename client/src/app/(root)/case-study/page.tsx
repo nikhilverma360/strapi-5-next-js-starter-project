@@ -2,6 +2,7 @@
 import React from 'react'
 import { useRouter } from 'next/navigation'
 import { ArrowRight, FileText } from 'lucide-react'
+import Image from 'next/image'
 
 interface CaseStudyCard {
   id: string
@@ -126,15 +127,14 @@ const CaseStudyPage: React.FC = () => {
   // Render individual case study card
   const renderCaseStudyCard = (card: CaseStudyCard) => {
     const isSpecialCard = card.id === '4' // Credit Suisse card has different styling
-    
+
     return (
-      <div 
+      <div
         key={card.id}
-        className={`bg-white overflow-hidden transition-all duration-300 group ${
-          isSpecialCard 
-            ? 'rounded-lg sm:rounded-xl shadow-md sm:shadow-lg hover:shadow-xl duration-200'
-            : 'rounded-2xl shadow-lg hover:shadow-2xl'
-        }`}
+        className={`bg-white overflow-hidden transition-all duration-300 group ${isSpecialCard
+          ? 'rounded-lg sm:rounded-xl shadow-md sm:shadow-lg hover:shadow-xl duration-200'
+          : 'rounded-2xl shadow-lg hover:shadow-2xl'
+          }`}
       >
         <div className="relative h-80 md:h-96 lg:h-[420px] bg-gray-100 overflow-hidden">
           <img
@@ -145,7 +145,7 @@ const CaseStudyPage: React.FC = () => {
         </div>
         <div className="p-6">
           <div className="flex items-center gap-4 mb-4">
-            <span className="bg-white text-gray-900 px-3 py-1 rounded-md text-sm font-medium border border-[#F2BE00] font-['Montserrat']">
+            <span className="bg-white text-gray-900 px-3 py-1 rounded-md text-sm font-medium border border-[#397BA7] font-['Montserrat']">
               {card.category}
             </span>
             <span className="text-gray-500 text-sm font-semibold font-['Montserrat']">{card.date}</span>
@@ -153,7 +153,7 @@ const CaseStudyPage: React.FC = () => {
           <h3 className={`text-gray-900 text-xl mb-4 line-clamp-2 min-h-[3.5rem] font-['Montserrat'] font-${card.fontWeight || 'semibold'}`}>
             {card.title}
           </h3>
-          <div 
+          <div
             className="flex items-center justify-between group/link cursor-pointer"
             onClick={() => card.slug && router.push(`/case-study/${card.slug}`)}
           >
@@ -176,37 +176,35 @@ const CaseStudyPage: React.FC = () => {
         {/* Top Banner with Section.png background - Responsive heights */}
         <div
           className="relative w-full min-h-[300px] sm:min-h-[350px] md:min-h-[400px] lg:min-h-[450px] flex items-center justify-center overflow-hidden"
-          style={{
-            backgroundImage: "url('/Section.png')",
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat'
-          }}
+          style={{ background: 'linear-gradient(180deg, #397BA7 4%, #7EBFDB 100%)' }}
         >
           {/* Fallback img element */}
-          <img
-            src="/Section.png"
-            alt="Case Study Background"
-            className="absolute top-0 left-0 w-full h-full object-cover z-0 opacity-0"
-            style={{ minHeight: '100%' }}
-          />
+          <div className="absolute inset-0 z-0 -top-100">
+            <Image
+              src="/hero_bg.png"
+              alt="Background lines"
+              fill
+              className="object-cover opacity-100"
+              priority
+            />
+          </div>
 
           {/* Overlay to ensure text readability */}
           <div className="absolute inset-0 bg-opacity-20 z-10"></div>
 
-          {/* Content positioned above the background image - Responsive padding and typography */}
-          <div className="relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
-            <div className="flex items-center justify-center mb-3 sm:mb-4 gap-2">
-              <svg className="w-5 h-5 sm:w-6 sm:h-6 text-[#E2B33C]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-              </svg>
-              <p className="text-[#E2B33C] text-lg font-medium font-['Inter']">Blog</p>
+          {/* Content positioned above the background image - Responsive */}
+          <div className="relative z-20 text-center text-white pt-10 px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center justify-center mb-3 sm:mb-4">
+              <div className="hidden sm:flex bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 items-center gap-2 shadow-lg border border-white/30">
+                <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                </svg>
+                <p className="text-white text-md font-medium font-['Outfit']">Blog</p>
+              </div>
             </div>
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold font-['Montserrat'] leading-tight">
-              <span className="text-white">Our Latest</span>{' '}
-              <span className="bg-gradient-to-r from-yellow-400 to-green-500 bg-clip-text text-transparent">News &</span>
-              <br />
-              <span className="bg-gradient-to-r from-yellow-400 to-green-500 bg-clip-text text-transparent">Case Study</span>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold font-['Montserrat']">
+              <span className="text-white font-heading">Our Latest News & </span>{' '}
+              <span className="text-white font-heading">Case Study</span>
             </h1>
           </div>
         </div>
@@ -228,7 +226,7 @@ const CaseStudyPage: React.FC = () => {
               <div className="space-y-3 lg:space-y-4 flex flex-col justify-center">
                 {/* Category Tag and Date */}
                 <div className="flex items-center gap-4">
-                  <span className="bg-white text-gray-900 px-3 py-1 rounded-md text-sm font-medium border border-[#F2BE00] font-['Montserrat']">
+                  <span className="bg-white text-gray-900 px-3 py-1 rounded-md text-sm font-medium border border-[#397BA7] font-['Montserrat']">
                     Finance
                   </span>
                   <span className="text-gray-900 font-semibold text-sm">April 7, 2024</span>
@@ -269,16 +267,15 @@ const CaseStudyPage: React.FC = () => {
               <div className="flex items-center justify-start sm:justify-center overflow-x-auto sm:overflow-visible pb-2 sm:pb-0">
                 <div className="flex items-center space-x-2 sm:space-x-3 lg:space-x-4">
                   {filterCategories.map((category, index) => (
-                    <button 
+                    <button
                       key={index}
-                      className={`px-3 sm:px-4 lg:px-6 py-1.5 sm:py-2 rounded-md sm:rounded-lg text-sm sm:text-base font-medium whitespace-nowrap transition-colors duration-200 ${
-                        category.active 
-                          ? 'bg-[#E2B33C] text-white' 
-                          : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                      }`}
+                      className={`px-3 sm:px-4 lg:px-6 py-1.5 sm:py-2 rounded-md sm:rounded-lg text-sm sm:text-base font-medium whitespace-nowrap transition-colors duration-200 ${category.active
+                        ? 'bg-[#397BA7] text-white'
+                        : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                        }`}
                     >
                       {category.label}
-                  </button>
+                    </button>
                   ))}
                 </div>
               </div>

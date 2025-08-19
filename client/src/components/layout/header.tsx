@@ -39,9 +39,9 @@ function Header1({logoText, logo, navItems, cta}: {logoText: string, logo: {url:
               target={item.isExternal ? "_blank" : "_self"}
             >
               {item.text}
-              {(index === 1 || index === 3) && (
+              {/* {(index === 1 || index === 3) && (
                 <ChevronDown size={16} className="transition-transform duration-200" />
-              )}
+              )} */}
             </Link>
           ))}
         </nav>

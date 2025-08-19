@@ -165,9 +165,9 @@ const Footer2= ({text, socialLinks}: {text: string, socialLinks: Link[]}) => (
             <input
               type="email"
               placeholder="Enter your email"
-              className="flex-1 bg-[#1E2949] text-white px-3 sm:px-4 py-2 sm:py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-amber-500 transition-colors duration-200 text-sm placeholder-white/70"
+              className="flex-1 bg-[#989fb2] text-white px-3 sm:px-4 py-2 sm:py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-amber-500 transition-colors duration-200 text-sm placeholder-white/70"
             />
-            <button className="bg-[#E2B33C] text-white px-4 py-2 sm:py-3 rounded-lg hover:bg-amber-600 transition-colors duration-200 flex items-center justify-center space-x-2 text-sm font-medium">
+            <button className="bg-[#397AA7] text-white px-4 py-2 sm:py-3 rounded-lg hover:bg-amber-600 transition-colors duration-200 flex items-center justify-center space-x-2 text-sm font-medium">
               <span>Subscribe</span>
               <ArrowRight className="w-4 h-4" />
             </button>
